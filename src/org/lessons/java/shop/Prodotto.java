@@ -1,5 +1,6 @@
 package org.lessons.java.shop;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class Prodotto {
@@ -19,11 +20,9 @@ public class Prodotto {
     }
 
     // Setters
-    public void setCodice(int codice) {
-        this.codice = codice;
-    }
 
-    public void setName(String nome) {
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
@@ -35,12 +34,17 @@ public class Prodotto {
         this.prezzo = prezzo;
     }
 
-    public void setIva(byte iva) {
+    public void setIva(int iva) {
         this.iva = iva;
     }
 
     // Getters
-    public String getName() {
+
+    public int getCodice() {
+        return codice;
+    }
+
+    public String getNome() {
         return nome;
     }
 
@@ -48,7 +52,7 @@ public class Prodotto {
         return descrizione;
     }
 
-    public double getPrezzo() {
+    public int getPrezzo() {
         return prezzo;
     }
 
@@ -56,8 +60,9 @@ public class Prodotto {
         return iva;
     }
 
-    public double getPrezzoConIva() {
-        return prezzo += (iva + 100) / 100;
+    public String getPrezzoConIva() {
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return decimalFormat.format(prezzo * (1 + ((double) iva / 100)));
     }
 
     public String getNomeEsteso() {
