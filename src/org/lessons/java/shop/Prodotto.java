@@ -1,6 +1,7 @@
 package org.lessons.java.shop;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -8,10 +9,10 @@ public class Prodotto {
     private int codice;
     private String nome;
     private String descrizione;
-    private int prezzo;
-    private int iva;
+    private BigDecimal prezzo;
+    private BigDecimal iva;
 
-    public Prodotto(String nome, String descrizione, int prezzo, int iva) {
+    public Prodotto(String nome, String descrizione, BigDecimal prezzo, BigDecimal iva) {
         this.codice = generaCodice();
         this.nome = nome;
         this.descrizione = descrizione;
@@ -29,11 +30,11 @@ public class Prodotto {
         this.descrizione = descrizione;
     }
 
-    public void setPrezzo(int prezzo) {
+    public void setPrezzo(BigDecimal prezzo) {
         this.prezzo = prezzo;
     }
 
-    public void setIva(int iva) {
+    public void setIva(BigDecimal iva) {
         this.iva = iva;
     }
 
@@ -51,11 +52,11 @@ public class Prodotto {
         return descrizione;
     }
 
-    public int getPrezzo() {
+    public BigDecimal getPrezzo() {
         return prezzo;
     }
 
-    public int getIva() {
+    public BigDecimal getIva() {
         return iva;
     }
 
@@ -66,9 +67,8 @@ public class Prodotto {
         return rand.nextInt(1000, 1000000);
     }
 
-    public String getPrezzoConIva() {
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        return decimalFormat.format(prezzo * (1 + ((double) iva / 100)));
+    public BigDecimal getPrezzoConIva() {
+        return prezzo.add(prezzo.multiply(iva)).setScale(2, RoundingMode.HALF_EVEN);
     }
 
     public String getNomeEsteso() {
