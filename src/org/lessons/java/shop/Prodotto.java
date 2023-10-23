@@ -2,7 +2,6 @@ package org.lessons.java.shop;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.Random;
 
 public class Prodotto {
@@ -68,7 +67,7 @@ public class Prodotto {
     }
 
     public BigDecimal getPrezzoConIva() {
-        return prezzo.add(prezzo.multiply(iva)).setScale(2, RoundingMode.HALF_EVEN);
+        return prezzo.add(prezzo.multiply(iva.divide(new BigDecimal("100")))).setScale(2, RoundingMode.HALF_EVEN);
     }
 
     public String getNomeEsteso() {
@@ -79,5 +78,14 @@ public class Prodotto {
         String srtingaCodice = Integer.toString(codice);
         int lunghezzaCodice = srtingaCodice.length();
         return lunghezzaCodice < 8 ? "0".repeat(8 - lunghezzaCodice) + srtingaCodice : srtingaCodice;
+    }
+
+    @Override
+    public String toString() {
+        return "- Nome: " + nome + ", " +
+                "Descrizione: " + descrizione + ", " +
+                "Prezzo base: " + prezzo + "€, " +
+                "Iva prodotto: " + iva + "%, " +
+                "Prezzo con IVA: " + getPrezzoConIva() + "€, ";
     }
 }
