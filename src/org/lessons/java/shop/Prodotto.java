@@ -1,5 +1,6 @@
 package org.lessons.java.shop;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Random;
 
@@ -11,8 +12,7 @@ public class Prodotto {
     private int iva;
 
     public Prodotto(String nome, String descrizione, int prezzo, int iva) {
-        Random rand = new Random();
-        this.codice = rand.nextInt(1000, 1000000);
+        this.codice = generaCodice();
         this.nome = nome;
         this.descrizione = descrizione;
         this.prezzo = prezzo;
@@ -20,7 +20,6 @@ public class Prodotto {
     }
 
     // Setters
-
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -60,13 +59,20 @@ public class Prodotto {
         return iva;
     }
 
+    // Utilities
+
+    private int generaCodice() {
+        Random rand = new Random();
+        return rand.nextInt(1000, 1000000);
+    }
+
     public String getPrezzoConIva() {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return decimalFormat.format(prezzo * (1 + ((double) iva / 100)));
     }
 
     public String getNomeEsteso() {
-        return codice + "-" + nome;
+        return (codice + " " + nome).replaceAll(" ", "-");
     }
 
     public String getCodiceCompleto() {
