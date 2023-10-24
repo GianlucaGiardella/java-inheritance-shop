@@ -11,6 +11,22 @@ public class Cuffie extends Prodotto{
         this.tipo = tipo;
     }
 
+    public String getColore() {
+        return colore;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setColore(String colore) {
+        this.colore = colore;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     @Override
     public String toString() {
         return super.toString() +

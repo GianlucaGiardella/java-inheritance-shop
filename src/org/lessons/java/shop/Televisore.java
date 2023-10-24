@@ -11,6 +11,22 @@ public class Televisore extends Prodotto{
         this.smartTV = smartTV;
     }
 
+    public int getPollici() {
+        return pollici;
+    }
+
+    public boolean isSmartTV() {
+        return smartTV;
+    }
+
+    public void setPollici(int pollici) {
+        this.pollici = pollici;
+    }
+
+    public void setSmartTV(boolean smartTV) {
+        this.smartTV = smartTV;
+    }
+
     @Override
     public String toString() {
         return super.toString() +

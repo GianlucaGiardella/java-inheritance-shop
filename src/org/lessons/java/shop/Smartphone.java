@@ -11,6 +11,22 @@ public class Smartphone extends Prodotto{
         this.memoria = memoria;
     }
 
+    public long getCodiceIMEI() {
+        return codiceIMEI;
+    }
+
+    public int getMemoria() {
+        return memoria;
+    }
+
+    public void setCodiceIMEI(long codiceIMEI) {
+        this.codiceIMEI = codiceIMEI;
+    }
+
+    public void setMemoria(int memoria) {
+        this.memoria = memoria;
+    }
+
     @Override
     public String toString() {
         return super.toString() +
